@@ -1,0 +1,61 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}User index
+{% endblock %}
+
+{% block path %}
+	<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+		<div
+			class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div
+				class="d-flex align-items-center flex-wrap mr-2">
+				<!--begin::Page Title-->
+				<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">{{path}}</h5>
+				<!--end::Page Title-->
+				<!--begin::Actions-->
+				<div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+				<a href="{{ path('app_user_new') }}" class="btn btn-light-warning font-weight-bolder btn-sm">Añadir usuario</a>
+				<!--end::Actions-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+{% endblock %}
+{% block content %} #}
+<h1>User index</h1>
+{% block javascripts_ %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="{{ asset('bundles/sgdatatables/js/pipeline.js') }}"></script>
+	{{sg_datatables_render(datatable)}}
+{% endblock %}
+{# <table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Roles</th>
+				<th>Password</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+					<td>{{ user.password }}</td>
+					<td>
+						<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+						<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table> #}
+{# {% endblock %} #}

@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets_global %}
+	{{parent()}}
+	<!--begin::Page Custom Styles(used by this page)-->
+	<link
+	href="{{ asset('build/css/login/login.css') }}" rel="stylesheet" type="text/css"/>
+<!--end::Page Custom Styles-->
+{% endblock %}
+{% block body %}
+	<body
+		id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading loginEdited">
+		<!--begin::Main-->
+		<div
+			class="d-flex flex-column flex-root">
+			<!--begin::Login-->
+			<div class="login login-5 login-signin-on d-flex flex-row-fluid" id="kt_login">
+				<div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url(assets/media/bg/bg-2.jpg);">
+					<div
+						class="login-form text-center text-white p-7 position-relative overflow-hidden">
+						<!--begin::Login Header-->
+						<div class="d-flex flex-center mb-15">
+							<a href="#">
+								<img src="assets/media/logos/logo-letter-13.png" class="max-h-75px" alt=""/>
+							</a>
+						</div>
+						<!--end::Login Header-->
+						<!--begin::Login Sign in form-->
+						<div class="login-signin">
+							<div class="mb-20">
+								<h3 class="opacity-40 font-weight-normal">Iniciar sesión</h3>
+								<p class="opacity-40">Ingresá tus credenciales para iniciar sesión:</p>
+							</div>
+							<form class="form" id="kt_login_signin_form" method="post">
+								{% if error %}
+									<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+								{% endif %}
+
+								{% if app.user %}
+									<div class="mb-3">
+										You are logged in as
+										{{ app.user.userIdentifier }},
+										<a href="{{ path('app_logout') }}">Logout</a>
+									</div>
+								{% endif %}
+								<div class="form-group">
+									<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control h-auto text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" autocomplete="email" required autofocus placeholder="Email">
+								</div>
+								<div class="form-group">
+									<input type="password" name="password" id="inputPassword" class="form-control h-auto text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" autocomplete="current-password" required placeholder="Contraseña">
+								</div>
+								{# <div class="form-group d-flex flex-wrap justify-content-between align-items-center px-8 opacity-60"> #}
+								{# <div class="checkbox-inline">
+																										<label class="checkbox checkbox-outline checkbox-white text-white m-0">
+																											<input type="checkbox" name="remember"/>
+																											<span></span>Remember me</label>
+																									</div> #}
+
+								{# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																																								        See https://symfony.com/doc/current/security/remember_me.html #}
+
+								{# <div class="checkbox mb-3 checkbox-inline">
+																										<label class="checkbox checkbox-outline checkbox-white text-white m-0">
+																											<input type="checkbox" name="_remember_me">
+																											Remember me
+																										</label>
+																									</div> #}
+
+								{# </div> #}
+								<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> <button class="btn btn-lg btn-primary" type="submit">
+									Ingresar
+								</button>
+							</form>
+						</div>
+						<!--end::Login Sign in form-->
+					</div>
+				</div>
+			</div>
+			<!--end::Login-->
+		</div>
+	</body>
+{% endblock %}
+
+
+{# {% block title %}Log in!
+
+{% endblock %}
+{% block path %}
+	<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+		<div
+			class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div
+				class="d-flex align-items-center flex-wrap mr-2">
+				<!--begin::Page Title-->
+				<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">{{path}}</h5>
+				<!--end::Page Title-->
+				<!--begin::Actions-->
+				<div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+				<!--end::Actions-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+	<form method="post">
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+
+		{% if app.user %}
+			<div class="mb-3">
+				You are logged in as
+				{{ app.user.userIdentifier }},
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+		{% endif %}
+
+		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		<label for="inputEmail">Email</label>
+		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+		<label for="inputPassword">Password</label>
+		<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+		<input
+		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+		{# 
+						        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+						        See https://symfony.com/doc/current/security/remember_me.html
+						
+						        <div class="checkbox mb-3">
+						            <label>
+						                <input type="checkbox" name="_remember_me"> Remember me
+						            </label>
+						        </div>
+						    #}
+
+{# <button class="btn btn-lg btn-primary" type="submit">
+			Sign in
+		</button>
+	</form>
+{% endblock %} #}

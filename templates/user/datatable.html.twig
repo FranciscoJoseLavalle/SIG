@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets_global %}
+	{{ parent() }}
+	<link href="{{ asset('build/css/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('datatables.bundle.js') }}"></script>
+	<script src="{{ asset('scrollable.js') }}"></script>
+{% endblock %}
+{% block path %}
+	<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+		<div
+			class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div
+				class="d-flex align-items-center flex-wrap mr-2">
+				<!--begin::Page Title-->
+				<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">{{path}}</h5>
+				<!--end::Page Title-->
+				<!--begin::Actions-->
+				<div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+				{# <a href="{{ path('app_register') }}" class="btn btn-light-warning font-weight-bolder btn-sm">Añadir usuario</a> #}
+				<!--end::Actions-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+	{{sg_datatables_render(datatable)}}
+	<div class="card card-custom gutter-b">
+		<div class="card-header flex-wrap border-0 pt-6 pb-0">
+			<div class="card-title">
+				<h3 class="card-label">Users Table
+				</div>
+				<div
+					class="card-toolbar">
+					<!--begin::Button-->
+					<a href="{{ path('app_register') }}" class="btn btn-primary font-weight-bolder">
+						<span
+							class="svg-icon svg-icon-md">
+							<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewbox="0 0 24 24" version="1.1">
+								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<rect x="0" y="0" width="24" height="24"/>
+									<circle fill="#000000" cx="9" cy="15" r="6"/>
+									<path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3"/>
+								</g>
+							</svg>
+							<!--end::Svg Icon-->
+						</span>Nuevo usuario</a>
+					<!--end::Button-->
+				</div>
+			</div>
+			<div
+				class="card-body">
+				<!--begin: Datatable-->
+				<table class="table table-separate table-head-custom table-checkable" id="kt_datatable1">
+					<thead>
+						<tr>
+							<th>Email</th>
+							<th>Role</th>
+							<th>Actions</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr>
+								<td>{{ user.email }}</td>
+								<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+								<td>
+									<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUser">
+										Editar
+									</button>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+										Mostrar
+									</button>
+								</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+
+							{# SHOW USER MODAL INICIO #}
+							<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLongTitle">Detalle del usuario</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p>ID:
+												{{ user.id }}</p>
+											<p>Email:
+												{{ user.email }}</p>
+											<p>Roles:
+												{{ user.roles ? user.roles|json_encode : '' }}</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							{# SHOW USER MODAL FIN #}
+
+
+							{# EDIT USER MODAL INICIO #}
+							<div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLongTitle">Editar usuario</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div
+											class="modal-body">
+											{# {{ include('user/_form.html.twig', {'button_label': 'Update'}) }} #}
+
+											{{ include('user/_delete_form.html.twig') }}
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+											<button type="button" class="btn btn-primary">Guardar cambios</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							{# EDIT USER MODAL FIN #}
+						{% else %}
+							<tr>
+								<td colspan="5">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</tbody>
+			</table>
+			<!--end: Datatable-->
+		</div>
+	</div>
+
+	<!--begin::Page Vendors(used by this page)-->
+{% endblock %}
+{% block javascripts_page %}
+	<script src="{{ asset('bundles/sgdatatables/js/pipeline.js') }}"></script>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment-with-locales.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js" charset="UTF-8"></script>
+<script src="https://cdn.datatables.net/v/bs/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/r-2.1.0/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.1/release/featherlight.min.js"></script>{% endblock %}

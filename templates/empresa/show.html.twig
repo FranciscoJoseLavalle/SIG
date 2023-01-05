@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empresa{% endblock %}
+
+{% block body %}
+    <h1>Empresa</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ empresa.id }}</td>
+            </tr>
+            <tr>
+                <th>RazonSocial</th>
+                <td>{{ empresa.razonSocial }}</td>
+            </tr>
+            <tr>
+                <th>NombreFantasia</th>
+                <td>{{ empresa.nombreFantasia }}</td>
+            </tr>
+            <tr>
+                <th>Domicilio</th>
+                <td>{{ empresa.domicilio }}</td>
+            </tr>
+            <tr>
+                <th>Localidad</th>
+                <td>{{ empresa.localidad }}</td>
+            </tr>
+            <tr>
+                <th>CodigoPostal</th>
+                <td>{{ empresa.codigoPostal }}</td>
+            </tr>
+            <tr>
+                <th>Cuit</th>
+                <td>{{ empresa.cuit }}</td>
+            </tr>
+            <tr>
+                <th>Iibb</th>
+                <td>{{ empresa.iibb }}</td>
+            </tr>
+            <tr>
+                <th>FechaInicioActividades</th>
+                <td>{{ empresa.fechaInicioActividades ? empresa.fechaInicioActividades|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PuntoDeVenta</th>
+                <td>{{ empresa.puntoDeVenta }}</td>
+            </tr>
+            <tr>
+                <th>Passphrase</th>
+                <td>{{ empresa.passphrase }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ empresa.telefono }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_empresa_index') }}">back to list</a>
+
+    <a href="{{ path('app_empresa_edit', {'id': empresa.id}) }}">edit</a>
+
+    {{ include('empresa/_delete_form.html.twig') }}
+{% endblock %}

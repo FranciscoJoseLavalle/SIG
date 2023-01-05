@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--
+Template Name: Metronic - Bootstrap 4 HTML, React, Angular 11 & VueJS Admin Dashboard Theme
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: https://1.envato.market/EA4JP
+Renew Support: https://1.envato.market/EA4JP
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<html
+	lang="en">
+	<!--begin::Head-->
+	<head><base href="">
+		<meta charset="utf-8"/>
+		<title>
+			{% block title %}
+				Inicio
+			{% endblock %}
+		</title>
+		<meta name="description" content="Desarrollando..."/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<link
+		rel="canonical" href="https://keenthemes.com/metronic"/>
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+		<!--end::Fonts-->
+		<!--begin::Page Vendors Styles(used by this page)-->
+			{% block stylesheets_page %}
+		<link
+			href="{{ asset('build/css/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css"/> <!--end::Page Vendors Styles-->
+		{% endblock %}
+		<!--begin::Global Theme Styles(used by all pages)-->
+		{% block stylesheets_global %}
+			<link
+			href="{{ asset('build/css/plugins.bundle.css')}}" rel="stylesheet" type="text/css"/>
+			{# <link href="{{ asset('build/css/prismjs.bundle.css')}}" rel="stylesheet" type="text/css"/> #}
+			<link href="{{ asset('build/css/style.bundle.css')}}" rel="stylesheet" type="text/css"/>
+			<link href="{{ asset('build/app.css')}}" rel="stylesheet" type="text/css"/>
+			<link href="{{ asset('build/css/header.css')}}" rel="stylesheet" type="text/css"/>
+		{% endblock %}
+		<!--end::Global Theme Styles-->
+
+		<!--begin::Layout Themes(used by all pages)-->
+		{% block stylesheets_theme %}
+			<link href="{{ asset('build/css/themes/lightBase.css')}}" rel="stylesheet" type="text/css"/>
+			<link href="{{ asset('build/css/themes/lightMenu.css')}}" rel="stylesheet" type="text/css"/>
+			<link href="{{ asset('build/css/themes/darkBrand.css')}}" rel="stylesheet" type="text/css"/>
+			<link href="{{ asset('build/css/themes/darkAside.css')}}" rel="stylesheet" type="text/css"/>
+		{% endblock %}
+		<!--end::Layout Themes-->
+		<link rel="shortcut icon" href="{{ asset('build/images/favicon.ico')}}"/>
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body>
+		{% block body %}
+
+			<!--begin::Header-->
+			<header
+				class="headerPage">
+				<!--begin::Container-->
+				<div
+					class="container-fluid d-flex align-items-stretch justify-content-end">
+					<!--begin::Topbar-->
+					<div
+						class="topbar">
+						<!--begin::User-->
+						<div class="topbar-item">
+							{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+								<div class="dropdown">
+									<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Bienvenido,
+										</span>
+										<span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ app.user.email }}!</span>
+										<span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
+											<span class="symbol-label font-size-h5 font-weight-bold">{{ app.user.email | first | upper }}</span>
+										</span>
+									</button>
+									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+										<div class="dropdown-item" aria-labelledby="dropdownMenuButton">
+											<a href="{{ path('app_logout') }}" class="btn btn-dark">Cerrar sesión</a>
+										</div>
+									</div>
+								</div>
+
+							{% else %}
+								<a class="nav-link text-black-50" href="{{ path('app_login') }}">Iniciar sesión</a>
+							{% endif %}
+
+						</div>
+						<!--end::User-->
+					</div>
+					<!--end::Topbar-->
+				</div>
+				<!--begin::MobileNav-->
+				{# <div class="pos-f-t">
+																																																													<div class="collapse" id="navbarToggleExternalContent">
+																																																														<div class="bg-light p-4">
+																																																															<h4 class="text-white">Collapsed content</h4>
+																																																															<span class="text-muted">Toggleable via the navbar brand.</span>
+																																																														</div>
+																																																													</div>
+																																																													<nav class="navbar navbar-dark bg-dark">
+																																																														<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+																																																															<span class="navbar-toggler-icon"></span>
+																																																														</button>
+																																																														<button class="toggleButton btn p-0 burger-icon navbar-toggler" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+																																																															<span></span>
+																																																														</button>
+																																																													</nav>
+																																																												</div> #}
+
+				<!--end::MobileNav-->
+				<!--end::Container-->
+					<div
+					class="d-flex flex-row flex-column-fluid page"> <!--begin::Wrapper-->
+					<div
+						class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+						<!--begin::Content-->
+						<div
+							class="content-container" id="kt_content">
+							<!--begin::Subheader-->
+							{% block path %}
+								<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+									<div
+										class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+										<!--begin::Info-->
+										<div
+											class="d-flex align-items-center flex-wrap mr-2">
+											<!--begin::Page Title-->
+											<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Inicio</h5>
+											<!--end::Page Title-->
+											<!--begin::Actions-->
+											<div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+											<!--end::Actions-->
+										</div>
+										<!--end::Info-->
+									</div>
+								</div>
+							{% endblock %}
+						</div>
+					</div>
+				</div>
+			</header>
+			<!--end::Header-->
+			<!--begin::Aside-->
+			<aside
+				class="asidePage">
+				<!--begin::Brand-->
+				<div class="asidePage-top">
+					<!--begin::Logo-->
+					<!--end::Logo-->
+					{# begin::Togglebutton #}
+						<button class="toggleButton btn p-0 burger-icon"> <span></span>
+					</button>
+					{# end::Togglebutton #}
+				</div>
+				<!--end::Brand-->
+				<!--begin::Aside Menu-->
+				<div
+					class="aside-menu-wrapperflex-column-fluid" id="kt_aside_menu_wrapper">
+					<!--begin::Menu Container-->
+					<div
+						id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+						<!--begin::Menu Nav-->
+						<ul class="menu-nav">
+							{{ menu()|raw }}
+							{{ menu()|raw }}
+							{{ menu()|raw }}
+							{{ menu()|raw }}
+							{{ menu()|raw }}
+							{{ menu()|raw }}
+							{{ menu()|raw }}
+						</ul>
+						<!--end::Aside Menu-->
+					</div>
+				</div>
+			</aside>
+			<!--end::Aside-->
+			<main
+				class="mainPage">
+				<!--begin::Page-->
+				{% block content %}{% endblock %}
+				<!--end::Page-->
+			</main>
+		{% endblock %}
+		{% block javascripts_global %}
+			<script src="{{ asset('jsTest/aside.js') }}"></script>
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		{% endblock %}
+	</body>
+</html>

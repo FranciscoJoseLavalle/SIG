@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clientes
+{% endblock %}
+{% block path %}
+	<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+		<div
+			class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div
+				class="d-flex align-items-center flex-wrap mr-2">
+				<!--begin::Page Title-->
+				<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">{{path}}</h5>
+				<!--end::Page Title-->
+				<!--begin::Actions-->
+				<div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+				<a href="{{ path('app_cliente_new') }}" class="btn btn-light-warning font-weight-bolder btn-sm">Añadir cliente</a>
+				<!--end::Actions-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+	{{ parent() }}
+	<h1>Clientes</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>RazonSocial</th>
+				<th>Representante</th>
+				<th>Domicilio</th>
+				<th>CodigoPostal</th>
+				<th>Email</th>
+				<th>Cuit</th>
+				<th>NombreFantasia</th>
+				<th>Horario</th>
+				<th>Telefono1</th>
+				<th>Telefono2</th>
+				<th>Observaciones</th>
+				<th>DomicilioEnvios</th>
+				<th>CodigoPostalEnvios</th>
+				<th>Habilitado</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for cliente in clientes %}
+				<tr>
+					<td>{{ cliente.id }}</td>
+					<td>{{ cliente.razonSocial }}</td>
+					<td>{{ cliente.representante }}</td>
+					<td>{{ cliente.domicilio }}</td>
+					<td>{{ cliente.codigoPostal }}</td>
+					<td>{{ cliente.email }}</td>
+					<td>{{ cliente.cuit }}</td>
+					<td>{{ cliente.nombreFantasia }}</td>
+					<td>{{ cliente.horario }}</td>
+					<td>{{ cliente.telefono1 }}</td>
+					<td>{{ cliente.telefono2 }}</td>
+					<td>{{ cliente.observaciones }}</td>
+					<td>{{ cliente.domicilioEnvios }}</td>
+					<td>{{ cliente.codigoPostalEnvios }}</td>
+					<td>{{ cliente.habilitado ? 'Yes' : 'No' }}</td>
+					<td>
+						<a href="{{ path('app_cliente_show', {'id': cliente.id}) }}">show</a>
+						<a href="{{ path('app_cliente_edit', {'id': cliente.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="16">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

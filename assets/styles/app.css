@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.cliente {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    /* align-items: flex-end; */
+}
+
+.asidePage {
+    width: 20rem;
+    background-color: #1e1e2d;
+    height: 100vh;
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    left: 0;
+}
+
+.asidePage-top {
+    background-color: #1b1b28;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.5rem;
+}
+
+.asidePage i {
+    width: 1rem;
+    aspect-ratio: 1 / 1;
+}
+
+.transition {
+    transition: 1s;
+}
+
+.asideClosed {
+    width: 5.9rem;
+}
+
+.mainPage {
+    position: absolute;
+    top: 10rem;
+    left: 20rem;
+    padding: 2rem;
+    width: calc(100% - 20rem);
+}
+
+.mainOpened {
+    left: 6rem;
+}
+
+.active {
+    background-color: #1b1b28;
+}

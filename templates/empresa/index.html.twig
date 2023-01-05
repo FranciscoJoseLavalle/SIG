@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empresa index
+{% endblock %}
+
+{% block body %}
+	{{ parent() }}
+	<h1>Empresa index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>RazonSocial</th>
+				<th>NombreFantasia</th>
+				<th>Domicilio</th>
+				<th>Localidad</th>
+				<th>CodigoPostal</th>
+				<th>Cuit</th>
+				<th>Iibb</th>
+				<th>FechaInicioActividades</th>
+				<th>PuntoDeVenta</th>
+				<th>Passphrase</th>
+				<th>Telefono</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for empresa in empresas %}
+				<tr>
+					<td>{{ empresa.id }}</td>
+					<td>{{ empresa.razonSocial }}</td>
+					<td>{{ empresa.nombreFantasia }}</td>
+					<td>{{ empresa.domicilio }}</td>
+					<td>{{ empresa.localidad }}</td>
+					<td>{{ empresa.codigoPostal }}</td>
+					<td>{{ empresa.cuit }}</td>
+					<td>{{ empresa.iibb }}</td>
+					<td>{{ empresa.fechaInicioActividades ? empresa.fechaInicioActividades|date('Y-m-d') : '' }}</td>
+					<td>{{ empresa.puntoDeVenta }}</td>
+					<td>{{ empresa.passphrase }}</td>
+					<td>{{ empresa.telefono }}</td>
+					<td>
+						<a href="{{ path('app_empresa_show', {'id': empresa.id}) }}">show</a>
+						<a href="{{ path('app_empresa_edit', {'id': empresa.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="13">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_empresa_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+Home:
+    route: index
+    path: index
+    icon: fa fa-home
+    roles:
+
+Clientes:
+    route: app_cliente_index
+    path: app_cliente_index
+    icon: fa fa-database
+    roles:
+                    
+Seguridad:
+    route: ""
+    path: ""
+    icon: fa fa-database
+    roles:
+    submenu:
+        Usuarios:
+            route: app_user_index
+            path: app_user_index
+            roles:
+        Grupos:
+            route: index
+            path: index
+            roles:
+            submenu:
+                Usuarios:
+                    route: app_user_index
+                    path: app_user_index
+                    roles:
+                Grupos:
+                    route: index
+                    path: index
+                    roles:

@@ -1,0 +1,10 @@
+.headerPage {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 20rem);
+    position: absolute;
+    right: 0;
+}
+.headerOpened {
+    width: calc(100% - 5.9rem);
+}

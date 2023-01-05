@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cliente
+{% endblock %}
+
+{% block path %}
+	<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+		<div
+			class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+			<!--begin::Info-->
+			<div
+				class="d-flex align-items-center flex-wrap mr-2">
+				<!--begin::Page Title-->
+				<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">{{path}}</h5>
+				<!--end::Page Title-->
+				<!--begin::Actions-->
+				<div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
+				<a href="{{ path('app_cliente_new') }}" class="btn btn-light-warning font-weight-bolder btn-sm">Añadir cliente</a>
+				<!--end::Actions-->
+			</div>
+			<!--end::Info-->
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+	<h1>Cliente</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ cliente.id }}</td>
+			</tr>
+			<tr>
+				<th>RazonSocial</th>
+				<td>{{ cliente.razonSocial }}</td>
+			</tr>
+			<tr>
+				<th>Representante</th>
+				<td>{{ cliente.representante }}</td>
+			</tr>
+			<tr>
+				<th>Domicilio</th>
+				<td>{{ cliente.domicilio }}</td>
+			</tr>
+			<tr>
+				<th>CodigoPostal</th>
+				<td>{{ cliente.codigoPostal }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ cliente.email }}</td>
+			</tr>
+			<tr>
+				<th>Cuit</th>
+				<td>{{ cliente.cuit }}</td>
+			</tr>
+			<tr>
+				<th>NombreFantasia</th>
+				<td>{{ cliente.nombreFantasia }}</td>
+			</tr>
+			<tr>
+				<th>Horario</th>
+				<td>{{ cliente.horario }}</td>
+			</tr>
+			<tr>
+				<th>Telefono1</th>
+				<td>{{ cliente.telefono1 }}</td>
+			</tr>
+			<tr>
+				<th>Telefono2</th>
+				<td>{{ cliente.telefono2 }}</td>
+			</tr>
+			<tr>
+				<th>Observaciones</th>
+				<td>{{ cliente.observaciones }}</td>
+			</tr>
+			<tr>
+				<th>DomicilioEnvios</th>
+				<td>{{ cliente.domicilioEnvios }}</td>
+			</tr>
+			<tr>
+				<th>CodigoPostalEnvios</th>
+				<td>{{ cliente.codigoPostalEnvios }}</td>
+			</tr>
+			<tr>
+				<th>Habilitado</th>
+				<td>{{ cliente.habilitado ? 'Yes' : 'No' }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_cliente_index') }}">back to list</a>
+
+	<a href="{{ path('app_cliente_edit', {'id': cliente.id}) }}">edit</a>
+
+	{{ include('cliente/_delete_form.html.twig') }}
+{% endblock %}
